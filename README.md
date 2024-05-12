@@ -16,6 +16,19 @@ a mock API call)
 
 ## Demo Videos
 
+Centering map on user's updated location:
+
+https://github.com/MHamzaSajjad/MapLibreApp-MVVM/assets/54877353/39180579-c2bc-4bbf-8734-8f1ea7f7c98a
+
+Switching map terrains using map style toggle button:
+
+https://github.com/MHamzaSajjad/MapLibreApp-MVVM/assets/54877353/a45e4d5f-51e0-45a3-9dc7-a2d59ab473a8
+
+User profile flow:
+
+https://github.com/MHamzaSajjad/MapLibreApp-MVVM/assets/54877353/495b34d3-74ef-4a17-a386-9d8cb0e89bee
+
+
 &nbsp;
 
 
