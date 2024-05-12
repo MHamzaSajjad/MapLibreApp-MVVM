@@ -36,7 +36,7 @@ class UserProfileViewModel @Inject constructor(
     val isSubscribed
         get() = _isSubscribed.asStateFlow()
 
-    private val _toastText = MutableStateFlow("")
+    private val _toastText = MutableStateFlow(Constants.DEFAULT_SUCCESS_MESSAGE)
     val toastText
         get() = _toastText.asStateFlow()
 
