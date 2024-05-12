@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">MapApp</string>
+    <string name="map_tab_label">Map</string>
+    <string name="profile_tab_label">Profile</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="about_me">About me</string>
+    <string name="full_name">Full Name</string>
+    <string name="birthday">Birthday</string>
+    <string name="email">Email</string>
+    <string name="phone">Phone</string>
+    <string name="subscribe_newsletter">I want to be subscribed to a newsletter</string>
+    <string name="save_changes">Save changes</string>
+</resources>
