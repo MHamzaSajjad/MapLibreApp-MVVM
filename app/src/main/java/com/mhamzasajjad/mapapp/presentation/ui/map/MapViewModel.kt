@@ -47,10 +47,18 @@ class MapViewModel @Inject constructor(
     val showToast
         get() = _showToast.asStateFlow()
 
+    private val _refreshMap = MutableStateFlow(false)
+    val refreshMap
+        get() = _refreshMap.asStateFlow()
+
     init {
         setMapStyleUrl(
             isFirstTime = true
         )
+    }
+
+    fun setRefreshMap(refreshMap: Boolean) {
+        _refreshMap.value = refreshMap
     }
 
     fun setMapStyleUrl(isFirstTime: Boolean) {
@@ -61,9 +69,9 @@ class MapViewModel @Inject constructor(
                 newMapStyle
             )
             if (!isFirstTime) {
+                setRefreshMap(true)
                 _toastText.value = "Map Mode: " +
-                        newMapStyle.split("_").last().capitalize() + " Map" +
-                        "\nSwitch tabs to refresh map"
+                        newMapStyle.split("_").last().capitalize() + " Map"
                 _showToast.value = true
             }
             _currentMapStyleIndex += 1

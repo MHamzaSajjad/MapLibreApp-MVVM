@@ -10,6 +10,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Card
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
 import androidx.compose.material.icons.Icons
@@ -44,6 +45,7 @@ fun MapScreen(
     val mapStyleUrl by viewModel.mapStyleUrl.collectAsState()
     val toastText by viewModel.toastText.collectAsState()
     val showToast by viewModel.showToast.collectAsState()
+    val refreshMap by viewModel.refreshMap.collectAsState()
 
     val context = LocalContext.current
     val activity = context as Activity
@@ -66,23 +68,28 @@ fun MapScreen(
     )
 
     Box(modifier = Modifier.fillMaxSize()) {
-        MapLibre(
-            modifier = Modifier.fillMaxSize(),
-            styleUrl = mapStyleUrl,
-            cameraPosition = CameraPosition(
-                target = LatLng(
-                    latitude = userCurrentLocation.latitude,
-                    longitude = userCurrentLocation.longitude,
-                    altitude = userCurrentLocation.altitude
+        if (refreshMap) {
+            Card(modifier = Modifier.fillMaxSize(), backgroundColor = Color.White) {}
+            viewModel.setRefreshMap(false)
+        } else {
+            MapLibre(
+                modifier = Modifier.fillMaxSize(),
+                styleUrl = mapStyleUrl,
+                cameraPosition = CameraPosition(
+                    target = LatLng(
+                        latitude = userCurrentLocation.latitude,
+                        longitude = userCurrentLocation.longitude,
+                        altitude = userCurrentLocation.altitude
+                    ),
+                    zoom = 5.0
                 ),
-                zoom = 5.0
-            ),
-            locationRequestProperties = LocationRequestProperties(),
-            locationStyling = LocationStyling(
-                enablePulse = true,
-                pulseColor = appPrimaryColorLightTheme.hashCode()
+                locationRequestProperties = LocationRequestProperties(),
+                locationStyling = LocationStyling(
+                    enablePulse = true,
+                    pulseColor = appPrimaryColorLightTheme.hashCode()
+                )
             )
-        )
+        }
         FloatingActionButton(
             modifier = Modifier
                 .padding(30.dp)
@@ -124,7 +131,7 @@ fun MapScreen(
         }
 
         if (showToast) {
-            Toast.makeText(context, toastText, Toast.LENGTH_LONG).show()
+            Toast.makeText(context, toastText, Toast.LENGTH_SHORT).show()
             viewModel.hideToast()
         }
 
